@@ -1,0 +1,41 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+*.lcov
+
+# Production
+/build
+/dist
+
+# Environment files
+.env*
+!.env.example  # Excepción: archivo de ejemplo que SÍ se sube
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.iml
+
+# Otros
+*.swp
+*.swo
+.sass-cache/
+.cache/
+.parcel-cache/
