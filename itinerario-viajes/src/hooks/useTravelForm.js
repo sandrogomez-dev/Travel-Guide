@@ -7,10 +7,12 @@ import {
   INITIAL_FORM_STATE,
   APP_CONFIG
 } from '../utils/constants';
+import { useItinerary } from './useItinerary';
 
 /**
  * Hook personalizado para manejar la lógica del formulario de viajes
  * Siguiendo principios de separación de responsabilidades
+ * Ahora integrado con el sistema de generación de itinerarios
  */
 export const useTravelForm = () => {
   // Estados del hook
@@ -18,6 +20,16 @@ export const useTravelForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+
+  // Integrar hook de itinerarios
+  const {
+    currentItinerary,
+    isGenerating,
+    generationError,
+    generateItinerary,
+    saveItinerary,
+    clearCurrentItinerary
+  } = useItinerary();
 
   /**
    * Manejar cambios en los inputs del formulario
@@ -139,6 +151,7 @@ export const useTravelForm = () => {
 
   /**
    * Manejar envío del formulario
+   * Ahora integrado con generación de itinerarios
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -152,21 +165,13 @@ export const useTravelForm = () => {
     setSubmitMessage('');
 
     try {
-      // Simular procesamiento del formulario
-      await new Promise(resolve => setTimeout(resolve, APP_CONFIG.FORM_SUBMISSION_DELAY));
+      // Generar itinerario usando el hook de itinerarios
+      const itinerary = await generateItinerary(formData);
       
       // Log para desarrollo
-      console.log('Datos del viaje:', {
-        ...formData,
-        budget: `$${formData.budget} USD`,
-        travelers: `${formData.travelers} ${formData.travelers === 1 ? 'persona' : 'personas'}`,
-        tripTypeLabel: TRIP_TYPES.find(type => type.value === formData.tripType)?.label
-      });
+      console.log('Itinerario generado:', itinerary);
       
       setSubmitMessage(SUCCESS_MESSAGES.ITINERARY_GENERATED);
-      
-      // Aquí podrías llamar a una función callback para manejar los datos
-      // onSubmitSuccess?.(formData);
       
     } catch (error) {
       console.error('Error al generar itinerario:', error);
@@ -183,6 +188,40 @@ export const useTravelForm = () => {
     setFormData(INITIAL_FORM_STATE);
     setErrors({});
     setSubmitMessage('');
+    clearCurrentItinerary(); // Limpiar itinerario actual también
+  };
+
+  /**
+   * Generar nuevo itinerario con los mismos datos
+   */
+  const regenerateItinerary = async () => {
+    if (!isFormComplete) return;
+    
+    try {
+      await generateItinerary(formData);
+    } catch (error) {
+      console.error('Error al regenerar itinerario:', error);
+    }
+  };
+
+  /**
+   * Manejar guardado de itinerario
+   */
+  const handleSaveItinerary = (itinerary, customName) => {
+    const success = saveItinerary(itinerary, customName);
+    if (success) {
+      setSubmitMessage('✅ Itinerario guardado correctamente');
+    } else {
+      setSubmitMessage('Error al guardar el itinerario');
+    }
+  };
+
+  /**
+   * Crear nuevo itinerario (limpiar todo)
+   */
+  const createNewItinerary = () => {
+    resetForm();
+    clearCurrentItinerary();
   };
 
   /**
@@ -222,23 +261,34 @@ export const useTravelForm = () => {
 
   // Retornar todas las funciones y estados necesarios
   return {
-    // Estados
+    // Estados del formulario
     formData,
     errors,
     isSubmitting,
     submitMessage,
     tripTypes: TRIP_TYPES,
     
-    // Funciones
+    // Estados del itinerario
+    currentItinerary,
+    isGenerating,
+    generationError,
+    
+    // Funciones del formulario
     handleInputChange,
     handleSubmit,
     resetForm,
     validateForm,
     getFormSummary,
     
+    // Funciones del itinerario
+    regenerateItinerary,
+    handleSaveItinerary,
+    createNewItinerary,
+    
     // Utilidades
     isFormValid: Object.keys(errors).length === 0 && isFormComplete,
     hasChanges,
-    isFormComplete
+    isFormComplete,
+    hasItinerary: !!currentItinerary
   };
 }; 

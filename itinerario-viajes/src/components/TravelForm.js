@@ -1,27 +1,23 @@
 import React from 'react';
 import { Card, Form, Button, Row, Col, Alert } from 'react-bootstrap';
-import { useTravelForm } from '../hooks/useTravelForm';
 import { INFO_MESSAGES, VALIDATION_LIMITS } from '../utils/constants';
 
 /**
  * Componente de formulario para planificar viajes
- * Utiliza el hook personalizado useTravelForm para manejar la lógica
+ * Ahora es un componente de presentación puro que recibe props
  */
-const TravelForm = () => {
-  // Usar el hook personalizado para manejar toda la lógica del formulario
-  const {
-    formData,
-    errors,
-    isSubmitting,
-    submitMessage,
-    tripTypes,
-    handleInputChange,
-    handleSubmit,
-    resetForm,
-    hasChanges,
-    isFormComplete
-  } = useTravelForm();
-
+const TravelForm = ({
+  formData,
+  errors,
+  isSubmitting,
+  submitMessage,
+  tripTypes,
+  handleInputChange,
+  handleSubmit,
+  resetForm,
+  hasChanges,
+  isFormComplete
+}) => {
   return (
     <div className="container py-4">
       <Card className="shadow-lg border-0">
