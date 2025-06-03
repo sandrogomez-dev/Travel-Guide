@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { usePDFExport } from '../hooks/usePDFExport';
+import PDFPreview from './PDFPreview';
 
 /**
  * Visualización de Itinerarios Premium - Rediseño completo
@@ -16,6 +18,10 @@ const ItineraryDisplayPremium = ({
   const [customName, setCustomName] = useState('');
   const [showCostBreakdown, setShowCostBreakdown] = useState(false);
   const [animationStep, setAnimationStep] = useState(0);
+  const [showPDFOptions, setShowPDFOptions] = useState(false);
+
+  // Hook para exportación PDF
+  const { isExporting, exportError, exportToPDF, exportCustomPDF } = usePDFExport();
 
   // Efectos de animación progresiva
   useEffect(() => {
@@ -30,6 +36,25 @@ const ItineraryDisplayPremium = ({
       return () => clearInterval(timer);
     }
   }, [itinerary, isGenerating]);
+
+  // Manejar exportación PDF
+  const handlePDFExport = async (type = 'custom') => {
+    if (!itinerary) return;
+    
+    try {
+      const filename = `itinerario-${itinerary.tripInfo.destination.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}`;
+      
+      if (type === 'custom') {
+        await exportCustomPDF(itinerary, filename);
+      } else {
+        await exportToPDF('pdf-content', filename);
+      }
+      
+      setShowPDFOptions(false);
+    } catch (error) {
+      console.error('Error al exportar PDF:', error);
+    }
+  };
 
   // Si está generando, mostrar animación de carga premium
   if (isGenerating) {
@@ -386,6 +411,24 @@ const ItineraryDisplayPremium = ({
               <span>💾</span>
               Guardar Mi Itinerario
             </button>
+
+            <button 
+              className="btn-premium btn-gradient-forest btn-large"
+              onClick={() => setShowPDFOptions(true)}
+              disabled={isExporting}
+            >
+              {isExporting ? (
+                <>
+                  <div className="loading-spinner-small"></div>
+                  Generando PDF...
+                </>
+              ) : (
+                <>
+                  <span>📄</span>
+                  Exportar PDF
+                </>
+              )}
+            </button>
           </div>
           
           <div className="secondary-actions">
@@ -404,6 +447,12 @@ const ItineraryDisplayPremium = ({
               Planear Otro Viaje
             </button>
           </div>
+
+          {exportError && (
+            <div className="export-error">
+              ⚠️ {exportError}
+            </div>
+          )}
         </div>
       </div>
 
@@ -455,6 +504,67 @@ const ItineraryDisplayPremium = ({
           </div>
         </div>
       )}
+
+      {/* Modal de Opciones PDF */}
+      {showPDFOptions && (
+        <div className="modal-overlay" onClick={() => setShowPDFOptions(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>📄 Exportar a PDF</h3>
+              <button 
+                className="modal-close"
+                onClick={() => setShowPDFOptions(false)}
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="modal-body">
+              <p className="modal-description">
+                Elige el formato de exportación que prefieras:
+              </p>
+              
+              <div className="pdf-options">
+                <button 
+                  className="pdf-option-card"
+                  onClick={() => handlePDFExport('custom')}
+                  disabled={isExporting}
+                >
+                  <div className="option-icon">📋</div>
+                  <div className="option-content">
+                    <h4>PDF Optimizado</h4>
+                    <p>Diseño limpio y profesional, perfecto para imprimir</p>
+                  </div>
+                </button>
+
+                <button 
+                  className="pdf-option-card"
+                  onClick={() => handlePDFExport('visual')}
+                  disabled={isExporting}
+                >
+                  <div className="option-icon">🎨</div>
+                  <div className="option-content">
+                    <h4>PDF Visual</h4>
+                    <p>Captura exacta de la vista premium con todos los estilos</p>
+                  </div>
+                </button>
+              </div>
+            </div>
+            
+            <div className="modal-footer">
+              <button 
+                className="btn-premium btn-secondary"
+                onClick={() => setShowPDFOptions(false)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Componente PDF (oculto) */}
+      <PDFPreview itinerary={itinerary} isVisible={false} />
     </div>
   );
 };
