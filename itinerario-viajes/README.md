@@ -1,70 +1,162 @@
-# Getting Started with Create React App
+# 🌍 Itinerario de Viajes - Travel Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Una aplicación web moderna para planificar viajes personalizados, construida con React y Bootstrap.
 
-## Available Scripts
+## ✨ Características Implementadas
 
-In the project directory, you can run:
+### 📋 Formulario Completo de Planificación
+- **Destino**: Campo inteligente con validación de longitud
+- **Fechas**: Selector de fechas con validación de rangos
+- **Duración**: Cálculo automático basado en fechas seleccionadas
+- **Tipo de Viaje**: 7 categorías diferentes (Aventura, Cultural, Relajación, etc.)
+- **Presupuesto**: Campo numérico con límites establecidos
+- **Número de Viajeros**: Validación de 1-20 personas
 
-### `npm start`
+### 🛡️ Validación Robusta
+- Validación en tiempo real mientras el usuario escribe
+- Mensajes de error descriptivos y en español
+- Prevención de fechas pasadas
+- Límites de presupuesto y duración
+- Indicadores visuales de estado del formulario
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🎨 UX/UI Mejorada
+- Diseño responsivo con Bootstrap 5
+- Iconos intuitivos para cada campo
+- Indicador de progreso del formulario
+- Estados de carga con spinner
+- Alertas de éxito y error
+- Contador de caracteres
+- Botones inteligentes (se habilitan/deshabilitan según contexto)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🏗️ Arquitectura Escalable
+- **Hook personalizado** (`useTravelForm`) para lógica de negocio
+- **Separación de responsabilidades** (UI vs Lógica)
+- **Constantes centralizadas** para mantenimiento fácil
+- **Código limpio y documentado** con JSDoc
+- **Componentes modulares** y reutilizables
 
-### `npm test`
+## 🚀 Tecnologías Utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React 19.1.0** - Framework de JavaScript
+- **React Bootstrap 2.10.10** - Componentes de UI
+- **Bootstrap 5.3.6** - Sistema de diseño
+- **JavaScript ES6+** - Sintaxis moderna
+- **React Hooks** - Manejo de estado y efectos
 
-### `npm run build`
+## 📁 Estructura del Proyecto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── components/          # Componentes React
+│   └── TravelForm.js   # Formulario principal
+├── hooks/              # Hooks personalizados
+│   └── useTravelForm.js # Lógica del formulario
+├── utils/              # Utilidades y constantes
+│   └── constants.js    # Constantes de la aplicación
+├── App.js              # Componente principal
+└── index.js            # Punto de entrada
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🎯 Próximas Funcionalidades (Roadmap)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Día 2: Sistema de Itinerarios
+- [ ] Componente para mostrar itinerarios generados
+- [ ] Algoritmo básico de generación de actividades
+- [ ] Almacenamiento local de itinerarios
 
-### `npm run eject`
+### Día 3: Gestión de Datos
+- [ ] Persistencia en LocalStorage
+- [ ] Historial de viajes planificados
+- [ ] Funcionalidad de editar/eliminar
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Día 4: Mejoras UX
+- [ ] Sistema de navegación (React Router)
+- [ ] Página de detalles de itinerario
+- [ ] Funcionalidad de compartir
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Día 5: Integración Externa
+- [ ] API de lugares turísticos
+- [ ] Mapas interactivos
+- [ ] Información del clima
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠️ Instalación y Uso
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerrequisitos
+- Node.js (versión 14 o superior)
+- npm o yarn
 
-## Learn More
+### Pasos de Instalación
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Clonar el repositorio**
+   ```bash
+   git clone <url-del-repositorio>
+   cd itinerario-viajes
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
 
-### Code Splitting
+3. **Ejecutar en modo desarrollo**
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. **Abrir en el navegador**
+   ```
+   http://localhost:3000
+   ```
 
-### Analyzing the Bundle Size
+### Scripts Disponibles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `npm start` - Ejecuta la aplicación en modo desarrollo
+- `npm test` - Ejecuta las pruebas unitarias
+- `npm run build` - Construye la aplicación para producción
+- `npm run eject` - Expone configuración de webpack
 
-### Making a Progressive Web App
+## 📝 Mejores Prácticas Implementadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 🧹 Código Limpio
+- **Nombres descriptivos** para variables y funciones
+- **Comentarios JSDoc** en todas las funciones
+- **Separación de concerns** (lógica vs presentación)
+- **Constantes centralizadas** para evitar magic numbers
 
-### Advanced Configuration
+### 🔧 Arquitectura
+- **Custom Hooks** para reutilización de lógica
+- **Componentes funcionales** con hooks de React
+- **Props drilling evitado** mediante hooks personalizados
+- **Estado inmutable** con spread operator
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 🎯 UX/UI
+- **Diseño mobile-first** con Bootstrap
+- **Retroalimentación inmediata** al usuario
+- **Estados de carga** para operaciones asíncronas
+- **Accesibilidad** con labels y ARIA attributes
 
-### Deployment
+### 🛡️ Validación
+- **Validación del lado cliente** en tiempo real
+- **Sanitización de inputs** para seguridad
+- **Mensajes de error claros** y accionables
+- **Prevención de estados inválidos**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🤝 Contribución
 
-### `npm run build` fails to minify
+1. Fork el proyecto
+2. Crea tu Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la Branch (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para detalles.
+
+## 👨‍💻 Desarrollado por
+
+**Tu Nombre** - Desarrollador Full Stack
+
+---
+
+*Desarrollado con ❤️ usando React y las mejores prácticas de desarrollo web*
