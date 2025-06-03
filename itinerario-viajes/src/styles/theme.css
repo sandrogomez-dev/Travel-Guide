@@ -1,0 +1,544 @@
+/* ===============================================
+   TRAVEL ITINERARY - PREMIUM DESIGN SYSTEM
+   Una obra de arte visual moderna
+   =============================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===============================================
+   CSS CUSTOM PROPERTIES - DESIGN TOKENS
+   =============================================== */
+
+:root {
+  /* === COLORES PRIMARIOS === */
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+
+  /* === GRADIENTES PREMIUM === */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-sunset: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-ocean: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-forest: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --gradient-gold: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  --gradient-cosmic: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient-dark: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+
+  /* === COLORES SEMANTICOS === */
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --error: #ef4444;
+  --error-light: #fecaca;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+
+  /* === COLORES NEUTROS === */
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  /* === TIPOGRAFIA === */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Poppins', sans-serif;
+
+  /* === ESPACIADO === */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* === BORDES Y SOMBRAS === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-glow: 0 0 20px rgb(0 0 0 / 0.1);
+
+  /* === ANIMACIONES === */
+  --transition-fast: all 0.15s ease-in-out;
+  --transition-normal: all 0.3s ease-in-out;
+  --transition-slow: all 0.5s ease-in-out;
+  
+  --animation-fade-in: fadeIn 0.6s ease-out;
+  --animation-slide-up: slideUp 0.6s ease-out;
+  --animation-scale-in: scaleIn 0.4s ease-out;
+  --animation-bounce-in: bounceIn 0.8s ease-out;
+}
+
+/* ===============================================
+   RESET Y BASE STYLES
+   =============================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--gray-800);
+  background: var(--gray-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===============================================
+   TIPOGRAFIA PREMIUM
+   =============================================== */
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: 3.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text-display-sm {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.text-heading-xl {
+  font-family: var(--font-accent);
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.text-heading-lg {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.text-heading-md {
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.text-body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.text-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===============================================
+   COMPONENTES BASE MODERNOS
+   =============================================== */
+
+.container-premium {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.card-premium {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-normal);
+  border: 1px solid var(--gray-100);
+  overflow: hidden;
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s;
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--gray-800);
+  border: 2px solid var(--gray-200);
+}
+
+.btn-secondary:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-300);
+}
+
+.btn-gradient-sunset {
+  background: var(--gradient-sunset);
+  color: var(--white);
+}
+
+.btn-gradient-ocean {
+  background: var(--gradient-ocean);
+  color: var(--white);
+}
+
+.btn-gradient-forest {
+  background: var(--gradient-forest);
+  color: var(--white);
+}
+
+/* ===============================================
+   INPUTS PREMIUM
+   =============================================== */
+
+.input-premium {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  font-size: 1rem;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  transition: var(--transition-normal);
+  font-family: var(--font-body);
+}
+
+.input-premium:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  transform: translateY(-1px);
+}
+
+.input-premium::placeholder {
+  color: var(--gray-400);
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-label {
+  display: block;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.025em;
+}
+
+.input-icon {
+  position: absolute;
+  left: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  font-size: 1.25rem;
+}
+
+.input-with-icon {
+  padding-left: 3rem;
+}
+
+/* ===============================================
+   EFECTOS VISUALES Y ANIMACIONES
+   =============================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-in {
+  animation: var(--animation-fade-in);
+}
+
+.animate-slide-up {
+  animation: var(--animation-slide-up);
+}
+
+.animate-scale-in {
+  animation: var(--animation-scale-in);
+}
+
+.animate-bounce-in {
+  animation: var(--animation-bounce-in);
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* ===============================================
+   UTILIDADES DE LAYOUT
+   =============================================== */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hover-lift {
+  transition: var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-scale {
+  transition: var(--transition-normal);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.text-gradient-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sunset {
+  background: var(--gradient-sunset);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-pattern {
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2px, transparent 0),
+    radial-gradient(circle at 75px 75px, rgba(255,255,255,0.1) 2px, transparent 0);
+  background-size: 100px 100px;
+}
+
+/* ===============================================
+   RESPONSIVE DESIGN
+   =============================================== */
+
+@media (max-width: 640px) {
+  .text-display-xl {
+    font-size: 3rem;
+  }
+  
+  .text-display-lg {
+    font-size: 2.5rem;
+  }
+  
+  .text-display-md {
+    font-size: 2rem;
+  }
+  
+  .container-premium {
+    padding: 0 var(--space-md);
+  }
+  
+  .btn-premium {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-premium {
+    border-radius: var(--radius-lg);
+  }
+  
+  .btn-premium {
+    width: 100%;
+    justify-content: center;
+  }
+} 

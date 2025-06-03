@@ -4,8 +4,7 @@ import {
   VALIDATION_LIMITS,
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
-  INITIAL_FORM_STATE,
-  APP_CONFIG
+  INITIAL_FORM_STATE
 } from '../utils/constants';
 import { useItinerary } from './useItinerary';
 
