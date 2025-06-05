@@ -155,7 +155,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.m
 
 ## 👨‍💻 Desarrollado por
 
-**Tu Nombre** - Desarrollador Full Stack
+**Sandro Gomez** - Desarrollador Full Stack
 
 ---
 
